@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altocumulus Technologies Pvt. Ltd. | IT Services & Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A0F2C;
+    --navy-mid: #101535;
+    --navy-light: #1A2150;
+    --electric: #00D4FF;
+    --electric-dim: rgba(0,212,255,0.12);
+    --electric-glow: rgba(0,212,255,0.06);
+    --accent: #FF6B35;
+    --white: #F4F7FF;
+    --muted: rgba(244,247,255,0.55);
+    --border: rgba(0,212,255,0.15);
+    --card-bg: rgba(26,33,80,0.5);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6%;
+    background: rgba(10,15,44,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--electric); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--electric); }
+  .nav-cta {
+    background: var(--electric); color: var(--navy) !important;
+    padding: 0.5rem 1.3rem; border-radius: 4px;
+    font-weight: 600 !important; color: var(--navy);
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 6% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+  }
+  .hero-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+  }
+  .hero-orb-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+    bottom: 50px; left: -50px;
+  }
+  .hero-content { position: relative; max-width: 720px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--electric-dim);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.35rem 1rem; margin-bottom: 2rem;
+    font-size: 0.78rem; letter-spacing: 0.08em; color: var(--electric);
+    text-transform: uppercase;
+  }
+  .hero-badge::before {
+    content: ''; display: block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--electric);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 800; line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.6rem;
+  }
+  h1 .line-electric { color: var(--electric); display: block; }
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.75;
+    color: var(--muted); max-width: 540px;
+    margin-bottom: 2.8rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--electric); color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; font-size: 0.95rem;
+    padding: 0.85rem 2rem; border-radius: 5px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid var(--border); color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400; font-size: 0.95rem;
+    padding: 0.85rem 2rem; border-radius: 5px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--electric); color: var(--electric); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 700; color: var(--electric);
+  }
+  .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 6%; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.12em;
+    color: var(--electric); text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; line-height: 1.75;
+    color: var(--muted); max-width: 520px;
+  }
+  .section-head { margin-bottom: 3.5rem; }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--navy-mid);
+    padding: 2.2rem;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--electric), transparent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover { background: var(--navy-light); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: var(--electric-dim);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.4rem;
+  }
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
+  .service-card p { font-size: 0.88rem; line-height: 1.7; color: var(--muted); }
+
+  /* ── WHY US ── */
+  .why-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .why-visual {
+    position: relative;
+    aspect-ratio: 1/1; max-width: 440px;
+  }
+  .why-circle {
+    width: 100%; aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px dashed var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .why-inner {
+    width: 70%; aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px solid rgba(0,212,255,0.25);
+    background: radial-gradient(circle, var(--electric-glow), transparent 70%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.3rem;
+  }
+  .why-inner-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 800; color: var(--electric);
+  }
+  .why-inner-sub { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.06em; }
+  .orbit-dot {
+    position: absolute; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--electric);
+    box-shadow: 0 0 12px var(--electric);
+  }
+  .od1 { top: 6%; left: 50%; transform: translateX(-50%); }
+  .od2 { right: 6%; top: 50%; transform: translateY(-50%); }
+  .od3 { bottom: 6%; left: 50%; transform: translateX(-50%); }
+  .od4 { left: 6%; top: 50%; transform: translateY(-50%); }
+  .why-list { display: flex; flex-direction: column; gap: 1.6rem; }
+  .why-item { display: flex; gap: 1.2rem; }
+  .why-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    border-radius: 6px; background: var(--electric-dim);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem; font-weight: 700; color: var(--electric);
+  }
+  .why-item-content h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem;
+  }
+  .why-item-content p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── TECH STACK ── */
+  .tech-section { background: var(--navy-mid); }
+  .tech-grid {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .tech-tag {
+    padding: 0.5rem 1.2rem;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.85rem; color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tech-tag:hover { border-color: var(--electric); color: var(--electric); }
+
+  /* ── HOW WE WORK ── */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+  .process-step {
+    padding: 2rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800;
+    color: rgba(0,212,255,0.1);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .process-step h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .process-step p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+  .process-connector {
+    position: absolute; top: 2.5rem; right: -10px;
+    width: 20px; height: 1px;
+    background: var(--electric); z-index: 1;
+  }
+
+  /* ── CONTACT ── */
+  .contact-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .contact-info h2 { margin-bottom: 1.2rem; }
+  .contact-info p { color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .contact-icon {
+    width: 38px; height: 38px; flex-shrink: 0;
+    border-radius: 8px; background: var(--electric-dim);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .contact-detail-text strong {
+    display: block; font-size: 0.88rem;
+    font-weight: 500; margin-bottom: 0.2rem;
+  }
+  .contact-detail-text span { font-size: 0.85rem; color: var(--muted); }
+  .contact-form {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem;
+  }
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label {
+    display: block; font-size: 0.83rem;
+    color: var(--muted); margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group select option { background: var(--navy-mid); }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--electric); }
+  .form-group textarea { min-height: 110px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-submit {
+    width: 100%;
+    background: var(--electric); color: var(--navy);
+    border: none; border-radius: 6px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    padding: 0.95rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .form-submit:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 3rem 6% 2rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .logo { display: block; margin-bottom: 1rem; font-size: 1rem; }
+  .footer-brand p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; max-width: 260px; }
+  .footer-col h5 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--electric);
+    text-transform: uppercase; margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.65rem; }
+  .footer-col ul a {
+    font-size: 0.87rem; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.82rem; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .why-wrapper, .contact-wrapper { grid-template-columns: 1fr; }
+    .why-visual { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    .footer-top { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">ALTO<span>CUMULUS</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">IT Services & Digital Solutions</div>
+    <h1>
+      Engineering the <br>
+      <span class="line-electric">Digital Future</span>
+      for Your Business
+    </h1>
+    <p class="hero-sub">
+      Altocumulus Technologies delivers end-to-end IT services — from custom software development to cloud infrastructure — helping businesses scale with confidence and clarity.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Start a Project →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client Commitment</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Support & Uptime</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Technology Domains</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head">
+    <div class="section-label">What We Do</div>
+    <h2>Our Core Services</h2>
+    <p class="section-sub">From ideation to deployment, we build technology that drives real business outcomes.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">💻</div>
+      <h3>Custom Software Development</h3>
+      <p>Bespoke web and desktop applications engineered to fit your exact business workflows — scalable, secure, and maintainable.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <h3>Mobile App Development</h3>
+      <p>High-performance iOS and Android apps that deliver seamless user experiences, built with React Native and Flutter.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">☁️</div>
+      <h3>Cloud Services & DevOps</h3>
+      <p>Cloud migration, infrastructure design, CI/CD pipelines, and managed DevOps on AWS, Azure, and Google Cloud.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔒</div>
+      <h3>Cybersecurity Solutions</h3>
+      <p>End-to-end security audits, penetration testing, compliance readiness, and ongoing threat monitoring for your systems.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Data Analytics & AI</h3>
+      <p>Transform raw data into actionable intelligence. We build dashboards, ML models, and AI integrations that drive decisions.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛠️</div>
+      <h3>IT Consulting & Support</h3>
+      <p>Strategic technology roadmapping, vendor evaluation, IT infrastructure management, and 24/7 technical helpdesk support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="about">
+  <div class="why-wrapper">
+    <div>
+      <div class="section-label">Why Altocumulus</div>
+      <h2>Built to Deliver Results, Not Just Code</h2>
+      <p class="section-sub" style="margin-bottom: 2.5rem;">We operate at the intersection of deep technical expertise and business strategy — ensuring every solution we build creates tangible value.</p>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div class="why-item-content">
+            <h4>Startup DNA, Enterprise Discipline</h4>
+            <p>We move fast without breaking things. Agile processes combined with rigorous quality assurance keep your project on time and on budget.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div class="why-item-content">
+            <h4>Full-Spectrum Expertise</h4>
+            <p>One partner for everything — frontend, backend, mobile, cloud, security, and data. No handoff friction, complete accountability.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div class="why-item-content">
+            <h4>Transparent Communication</h4>
+            <p>Real-time project dashboards, weekly calls, and clear escalation paths. You always know exactly where your project stands.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <div class="why-item-content">
+            <h4>Post-Launch Partnership</h4>
+            <p>We don't vanish after go-live. Our SLA-backed support ensures your systems stay healthy, secure, and evolving as your needs grow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="why-circle">
+        <div class="orbit-dot od1"></div>
+        <div class="orbit-dot od2"></div>
+        <div class="orbit-dot od3"></div>
+        <div class="orbit-dot od4"></div>
+        <div class="why-inner">
+          <div class="why-inner-text">ALTO</div>
+          <div class="why-inner-sub">TECHNOLOGIES</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-section" id="tech">
+  <div class="section-label">Our Stack</div>
+  <h2>Technologies We Work With</h2>
+  <div class="tech-grid">
+    <span class="tech-tag">React.js</span>
+    <span class="tech-tag">Next.js</span>
+    <span class="tech-tag">Vue.js</span>
+    <span class="tech-tag">Angular</span>
+    <span class="tech-tag">Node.js</span>
+    <span class="tech-tag">Python</span>
+    <span class="tech-tag">Django</span>
+    <span class="tech-tag">FastAPI</span>
+    <span class="tech-tag">Java Spring Boot</span>
+    <span class="tech-tag">.NET Core</span>
+    <span class="tech-tag">React Native</span>
+    <span class="tech-tag">Flutter</span>
+    <span class="tech-tag">PostgreSQL</span>
+    <span class="tech-tag">MongoDB</span>
+    <span class="tech-tag">Redis</span>
+    <span class="tech-tag">Elasticsearch</span>
+    <span class="tech-tag">AWS</span>
+    <span class="tech-tag">Azure</span>
+    <span class="tech-tag">Google Cloud</span>
+    <span class="tech-tag">Docker</span>
+    <span class="tech-tag">Kubernetes</span>
+    <span class="tech-tag">Terraform</span>
+    <span class="tech-tag">TensorFlow</span>
+    <span class="tech-tag">PyTorch</span>
+    <span class="tech-tag">LangChain</span>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-head">
+    <div class="section-label">How We Work</div>
+    <h2>Our Delivery Process</h2>
+    <p class="section-sub">A proven methodology that delivers predictable, high-quality outcomes every time.</p>
+  </div>
+  <div class="process-steps" style="border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <h4>Discovery & Scoping</h4>
+      <p>Deep-dive workshops to understand your goals, constraints, and success metrics. We document everything before writing a line of code.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <h4>Architecture & Design</h4>
+      <p>System blueprints, UI/UX prototypes, and technology selection reviewed and approved by your team before build begins.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <h4>Agile Development</h4>
+      <p>Two-week sprint cycles with continuous delivery. You see working software from week one, not month six.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <h4>QA & Launch</h4>
+      <p>Automated testing, security review, performance benchmarking, and a carefully orchestrated production deployment.</p>
+    </div>
+    <div class="process-step" style="border-right: none;">
+      <div class="step-num">05</div>
+      <h4>Ongoing Support</h4>
+      <p>SLA-backed monitoring, incident response, and continuous improvement — keeping your system healthy and growing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--navy-mid);">
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <div class="section-label">Get in Touch</div>
+      <h2>Let's Build Something Great Together</h2>
+      <p>Whether you have a detailed brief or just an idea, we'd love to hear about your project. Our team will get back to you within 24 hours.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📧</div>
+        <div class="contact-detail-text">
+          <strong>Email Us</strong>
+          <span>hello@altocumulustech.in</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail-text">
+          <strong>Call Us</strong>
+          <span>+91 98XXX XXXXX</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Registered Office</strong>
+          <span>India</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Rahul">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Sharma">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Work Email</label>
+        <input type="email" placeholder="rahul@company.com">
+      </div>
+      <div class="form-group">
+        <label>Service Interested In</label>
+        <select>
+          <option value="">Select a service</option>
+          <option>Custom Software Development</option>
+          <option>Mobile App Development</option>
+          <option>Cloud Services & DevOps</option>
+          <option>Cybersecurity Solutions</option>
+          <option>Data Analytics & AI</option>
+          <option>IT Consulting & Support</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Project</label>
+        <textarea placeholder="Brief description of your project, timeline, and budget..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you! We will contact you within 24 hours.')">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">ALTO<span>CUMULUS</span></a>
+      <p>Altocumulus Technologies Private Limited — Engineering intelligent IT solutions for forward-thinking businesses across India and beyond.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Software Development</a></li>
+        <li><a href="#services">Mobile Apps</a></li>
+        <li><a href="#services">Cloud & DevOps</a></li>
+        <li><a href="#services">Cybersecurity</a></li>
+        <li><a href="#services">Data & AI</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#contact">Careers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Altocumulus Technologies Private Limited. All rights reserved.</p>
+    <p style="color: var(--muted);">Made in India 🇮🇳</p>
+  </div>
+</footer>
+
+</body>
+</html>
